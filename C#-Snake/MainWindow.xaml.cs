@@ -25,21 +25,53 @@ namespace C_Snake
 
         private readonly int rows = 15, cols = 15;
         private readonly Image[,] gridImages;
+        private GameState gameState;
 
         public MainWindow()
         {
             InitializeComponent();
             gridImages = SetupGrid();
+            gameState = new GameState(rows, cols);
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Draw();
+            await GameLoop();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            if (gameState.GameOver)
+            {
+                return;
+            }
 
+            switch (e.Key)
+            {
+                case Key.Up:
+                    gameState.ChangeDirection(Direction.Up);
+                    break;
+                case Key.Down:
+                    gameState.ChangeDirection(Direction.Down);
+                    break;
+                case Key.Left:
+                    gameState.ChangeDirection(Direction.Left);
+                    break;
+                case Key.Right:
+                    gameState.ChangeDirection(Direction.Right);
+                    break;
+            }
+        }
+
+        private async Task GameLoop()
+        {
+            while (!gameState.GameOver)
+            {
+                await Task.Delay(100);
+                gameState.Move();
+                Draw();
+            }
         }
 
         private Image[,] SetupGrid()
@@ -63,6 +95,24 @@ namespace C_Snake
             }
 
             return images;
+        }
+
+        private void Draw()
+        {
+            DrawGrid();
+            ScoreText.Text = $"SCORE {gameState.Score}";
+        }
+
+        private void DrawGrid()
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    GridValue gridVal = gameState.Grid[i, j];
+                    gridImages[i, j].Source = gridValToImage[gridVal];
+                }
+            }
         }
     }
 }
