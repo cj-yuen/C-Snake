@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C#-Snake", "C#-Snake\C#-Snake.csproj", "{0FB13F8C-B713-474C-85B2-E2C6214DD0E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C-Snake", "C#-Snake\C-Snake.csproj", "{0FB13F8C-B713-474C-85B2-E2C6214DD0E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

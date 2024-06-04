@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace C__Snake
+namespace C_Snake
 {
     /// <summary>
     /// Interaction logic for App.xaml
