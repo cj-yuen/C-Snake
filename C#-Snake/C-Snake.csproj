@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\20281__koops__apple_crunch_18.wav" />
+    <None Remove="Assets\253886__themusicalnomad__negative_beeps.wav" />
+    <None Remove="Assets\273143__zvinbergsa__button-press-final.wav" />
+    <None Remove="Assets\273143__zvinbergsa__button-press.wav" />
     <None Remove="Assets\Body.png" />
     <None Remove="Assets\DeadBody.png" />
     <None Remove="Assets\DeadHead.png" />
@@ -18,6 +22,15 @@
     <None Remove="Assets\Food.png" />
     <None Remove="Assets\Head.png" />
     <None Remove="Assets\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\20281__koops__apple_crunch_18.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\253886__themusicalnomad__negative_beeps.wav" />
+    <EmbeddedResource Include="Assets\273143__zvinbergsa__button-press-final.wav" />
+    <EmbeddedResource Include="Assets\273143__zvinbergsa__button-press.wav" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,8 @@
-﻿namespace C_Snake
+﻿using System.IO;
+using System.Media;
+using System.Reflection;
+
+namespace C_Snake
 {
     public class GameState
     {
@@ -144,6 +148,26 @@
             return Grid[newHeadPos.Row, newHeadPos.Col];
         }
 
+        public void PlayMusic(string relativeFilePath)
+        {
+            try
+            {
+                SoundPlayer player = new SoundPlayer();
+                player.SoundLocation = System.IO.Path.GetFullPath(relativeFilePath);
+                player.Play();
+            }
+            catch (FileNotFoundException ex)
+            {
+                // Log the error message or handle it in a way that suits your application
+                Console.WriteLine($"File not found: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // This will catch any other exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+        }
+
         public void Move()
         {
             if (dirChanges.Count > 0)
@@ -165,6 +189,7 @@
             }
             else if (hit == GridValue.Food) {
                 AddHead(newHeadPos);
+                PlayMusic(@"..\..\..\Assets\20281__koops__apple_crunch_18.wav");
                 Score++;
                 AddFood();
             }

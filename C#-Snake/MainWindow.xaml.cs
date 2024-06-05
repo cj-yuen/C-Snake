@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Media;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -47,6 +49,7 @@ namespace C_Snake
         {
             Draw();
             await ShowCountDown();
+            PlayMusic(@"..\..\..\Assets\273143__zvinbergsa__button-press-final.wav");
             Overlay.Visibility = Visibility.Hidden;
             await GameLoop();
             await ShowGameOver();
@@ -170,17 +173,39 @@ namespace C_Snake
             }
         }
 
+        public void PlayMusic(string relativeFilePath)
+        {
+            try
+            {
+                SoundPlayer player = new SoundPlayer();
+                player.SoundLocation = System.IO.Path.GetFullPath(relativeFilePath);
+                player.Play();
+            }
+            catch (FileNotFoundException ex)
+            {
+                // Log the error message or handle it in a way that suits your application
+                Console.WriteLine($"File not found: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // This will catch any other exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+        }
+
         private async Task ShowCountDown()
         {
             for (int i = 3; i >= 1; i--)
             {
                 OverlayText.Text = i.ToString();
+                PlayMusic(@"..\..\..\Assets\273143__zvinbergsa__button-press.wav");
                 await Task.Delay(500);
             }
         }
 
         private async Task ShowGameOver()
         {
+            PlayMusic(@"..\..\..\Assets\253886__themusicalnomad__negative_beeps.wav");
             await DrawDeadSnake();
             await Task.Delay(500);
             Overlay.Visibility = Visibility.Visible;
