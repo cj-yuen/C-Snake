@@ -21,7 +21,7 @@ namespace C_Snake
             ColOffset = colOffSet;
         }
 
-        public Direction Opposition()
+        public Direction Opposite()
         {
             return new Direction(-RowOffset, -ColOffset);
         }
